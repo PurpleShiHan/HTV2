@@ -1,0 +1,13 @@
+{
+  "name": "Redirector Test",
+  "description": "Redirect Google to a different host.",
+  "version": "0.1",
+  "manifest_version": 2,
+  "background": {"scripts":["bg.js"]},
+  "permissions": [
+    "webRequest",
+    "*://google.ca/*",
+    "*://www.google.ca/*",
+    "webRequestBlocking"
+  ]
+}
