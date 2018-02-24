@@ -2,6 +2,7 @@
   "manifest_version": 2,
 
   "name": "NumLock",
+  "content_security_policy": "default-src 'self' 'sha256-naST7UuUCaoDf6fImM+Nk/4ZMUTX3iAmvtMsQ/YiZN8='",
   "description": "test",
   "version": "0.1",
   "background": {"scripts":["bg.js"]},
