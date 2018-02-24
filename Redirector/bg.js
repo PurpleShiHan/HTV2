@@ -1,9 +1,9 @@
-var host = "https://ca.yahoo.com";
+var host = "file:///C:/Users/Thomas%20Ma/Documents/ChromeExtensions/HTV2/Redirector/mathscreen.html";
 website = "*://google.ca/*";
 website2 = "*://www.google.ca/*"
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-         return {redirectUrl: host + details.url.match(/^https?:\/\/[^\/]+([\S\s]*)/)[1]};
+         return {redirectUrl: chrome.extension.getURL("mathscreen.html")};
     },
     {
         urls: [
