@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "NumLock",
+  "description": "test",
+  "version": "0.1",
+
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ]
+}

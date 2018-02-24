@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="style.css" />
+  <head>
+    <title>NumLock</title>
+  </head>
+  <body>
+    <h2>Hold up! We need you to answer a few questions first.</h2>
+  <button id="startButton" type="button" onclick="makeProblems()">Do Problems</button>
+  <button type="button" onclick="showAnswer(true)">Show Answers</button>
+
+    <table style="text-align: left; width: 280px; height: 190px;" border="1" cellpadding="2" cellspacing="2">
+      <tbody>
+      <tr>
+        <td>
+        <p id="demo 1"></p>
+    <input type="text" id= "text 1" />
+        <p id="answer 1"></p>
+      </td>
+      <td>
+        <p id="demo 2"></p>
+    <input type="text" id= "text 2" />
+        <p id="answer 2"></p>
+      </td>
+      <td>
+        <p id="demo 3"></p>
+    <input type="text" id= "text 3" />
+        <p id="answer 3"></p>
+      </td>
+      </tr>
+      <tr>
+      <td>
+        <p id="demo 4"></p>
+    <input type="text" id= "text 4" />
+        <p id="answer 4"></p>
+      </td>
+      <td>
+        <p id="demo 5"></p>
+    <input type="text" id= "text 5" />
+        <p id="answer 5"></p>
+      </td>
+      <td>
+        <p id="demo 6"></p>
+    <input type="text" id= "text 6" />
+        <p id="answer 6"></p>
+      </td>
+      </tr>
+      <tr>
+      <td>
+        <p id="demo 7"></p>
+    <input type="text" id= "text 7" />
+        <p id="answer 7"></p>
+      </td>
+      <td>
+        <p id="demo 8"></p>
+    <input type="text" id= "text 8" />
+        <p id="answer 8"></p>
+      </td>
+      <td>
+        <p id="demo 9"></p>
+    <input type="text" id= "text 9" />
+        <p id="answer 9"></p>
+      </td>
+      </tr>
+      <tr>
+      <td>
+        <p id="demo 10"></p>
+    <input type="text" id= "text 10" />
+        <p id="answer 10"></p>
+      </td>
+      <td>
+        <p id="demo 11"></p>
+    <input type="text" id= "text 11" />
+        <p id="answer 11"></p>
+      </td>
+      <td>
+        <p id="demo 12"></p>
+    <input type="text" id= "text 12" />
+        <p id="answer 12"></p>
+      </td>
+      </tr>
+    </tbody>
+    </table>
+	
+	<!-- Statements/timers conditional on how you answered questions -->
+	<p id="ranOutOfTime"></p>
+	<p id="questionsStatus"></p>
+	<p id="pTimer"></p>
+
+    <script>
+	//global variables
+    var answers = [];
+	var answersCorrect = 0;
+	
+      function makeProblems() {
+	  document.getElementById("startButton").style.visibility = "hidden";
+	  questionTimer();
+      answers = [];
+      for (i=0; i < 12; i++) {
+        var x = Math.floor((Math.random() * 10) + 1);
+        var y = Math.floor((Math.random() * 10) + 1);
+        document.getElementById("demo " + (i+1).toString()).innerHTML = x.toString() + " &times; " + y.toString();
+        answers.push(x*y);
+    document.getElementById("answer " + (i+1).toString()).style.visibility = "hidden";
+    document.getElementById("text " + (i+1).toString()).value = "";
+      }
+      
+      }
+      function showAnswer(x){
+	    var allRight = true;
+		for (i=0; i< 12; i++) {
+		  document.getElementById("answer "+(i+1).toString()).style.visibility = "visible";
+		  document.getElementById("answer "+(i+1).toString()).innerHTML = answers[i];
+		  var isEqual = (document.getElementById("text "+(i+1).toString()).value == answers[i].toString());
+		  if (!isEqual) {
+			document.getElementById("answer "+(i+1).toString()).style.color = "red";
+			allRight = false;
+		  }
+		  else{
+			document.getElementById("answer "+(i+1).toString()).style.color = "green";
+		  }
+        }
+		if (x==true) {
+			document.getElementById("ranOutOfTime").style.display = "none";
+			if (allRight) {
+				document.getElementById("questionsStatus").innerHTML = "You succeeded!";
+				answersCorrect = 1;
+			} else {
+				document.getElementById("questionsStatus").innerHTML = "One or more questions are wrong.";
+				answersCorrect = -1;
+				punishmentTimer();
+			}
+		  }
+      }
+    </script>
+
+<script>
+  function questionTimer() {
+      // Get todays date and time
+	  var now = new Date().getTime();
+	  // Set the date we're counting down to
+	  var countDownDate = now + 60000;
+
+	  // Update the count down every 1 second
+	  var x = setInterval(function() {
+		  var new_now = new Date().getTime();
+		  // Find the distance between now an the count down date
+		  var distance = countDownDate - new_now;
+
+		  // Time calculations for days, hours, minutes and seconds
+		  var seconds = Math.floor((distance) / 1000);
+
+		  // Display the result in the element with id="demo"
+		  document.getElementById("ranOutOfTime").innerHTML = seconds + "s ";
+
+		  // If the count down is finished, write some text 
+		  if (distance < 0) {
+			clearInterval(x);
+			showAnswer(false);
+			document.getElementById("ranOutOfTime").innerHTML = "You ran out of time!";
+			if (answersCorrect == 0) {
+			  answersCorrect = -1;
+			  punishmentTimer();
+			}
+		  }
+	}, 1000);
+  }
+</script>
+
+<script>
+	function punishmentTimer() {
+	  document.getElementById("pTimer").style.visibility = "visible";
+	  // Get todays date and time
+	  var now = new Date().getTime();
+	  // Set the date we're counting down to
+	  var countDownDate = now + 300000;
+	  
+	  var x = setInterval(function() {
+		  var new_now = new Date().getTime();
+		  // Find the distance between now an the count down date
+		  var distance = countDownDate - new_now;
+
+		  // Time calculations for days, hours, minutes and seconds
+		  var seconds = Math.floor((distance) / 1000);
+
+		  // Display the result in the element with id="demo"
+		  document.getElementById("pTimer").innerHTML = "You can try again in " + seconds + "s ";
+
+		  // If the count down is finished, write some text 
+		  if (distance < 0) {
+			clearInterval(x);
+			document.getElementById("pTimer").style.visibility = "hidden";
+			document.getElementById("startButton").style.visibility = "visible";
+			document.getElementById("startButton").innerHTML = "Try Again";
+			answersCorrect = 0;
+			}
+		}, 1000)
+	}
+</script>
+  </body>
+</html>
