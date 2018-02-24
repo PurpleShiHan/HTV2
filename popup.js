@@ -1,4 +1,6 @@
 chrome.tabs.getSelected(null, function(tab) {
     document.getElementById('currentLink').innerHTML = tab.url;
-	localStorage.setItem(tab.url.toString());
+    chrome.storage.sync.set({'foo': 'hello', 'bar': 'hi'}, function() {
+      console.log('Settings saved');
+    });
 });

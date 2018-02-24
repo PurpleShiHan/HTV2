@@ -9,5 +9,6 @@
     "*://google.ca/*",
     "*://www.google.ca/*",
     "webRequestBlocking"
+	"storage"
   ]
 }
