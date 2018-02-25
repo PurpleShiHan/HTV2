@@ -6,7 +6,7 @@
   "description": "test",
   "version": "0.1",
   "background": {"scripts":["common.js","bg.js"]}
-
+  "icons": { "128": "nl128.png" },
   "browser_action": {
     "default_popup": "popup.html"
   },
