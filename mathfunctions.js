@@ -31,7 +31,7 @@ var answersCorrect = 0;
 			document.getElementById("questionsStatus").innerHTML = "You succeeded!";
 			var now = new Date().getTime();
 			answersCorrect = 1;
-			window.localStorage.setItem("timer", now + 12000);
+			window.localStorage.setItem("timer", now + 360000);
 			window.localStorage.setItem("banSites", false);
 			wait(2000);
 			goToBannedSite();
