@@ -5,7 +5,7 @@
   "content_security_policy": "default-src 'self' 'sha256-naST7UuUCaoDf6fImM+Nk/4ZMUTX3iAmvtMsQ/YiZN8='",
   "description": "test",
   "version": "0.1",
-  "background": {"scripts":["common.js","bg.js"]}
+  "background": {"scripts":["common.js","bg.js"]},
 
   "browser_action": {
     "default_popup": "popup.html"

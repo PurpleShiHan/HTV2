@@ -4,16 +4,14 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
 	}
 });
 
-function checkBlacklisted(url) {
+function checkBlacklisted(ster) {
 	for (var i=0; i<localStorage.length; i++) {
-		if (localStorage.getItem(localStorage.key(i)) == "blocked site") {
-			if (url.includes(localStorage.getItem(localStorage.key(i))) {
-				return true;
-			}
+		if (localStorage.key(i).includes(ster) && localStorage.getItem(localStorage.key(i)) == "blocked site") {
+			return true;
 		}
 	}
 	return false;
-}
+} 
 
 var History = {};
 
