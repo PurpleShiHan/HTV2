@@ -8,7 +8,9 @@
     "webRequest",
     "*://google.ca/*",
     "*://www.google.ca/*",
+    "*://youtube.com/*", 
+    "*://www.youtube.com/*",
     "webRequestBlocking",
-	"storage"
+  "storage"
   ]
 }
