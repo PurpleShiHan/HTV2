@@ -4,8 +4,12 @@ chrome.tabs.getSelected(null, function(tab) {
 
 function blacklistHandler(e){
 	chrome.tabs.getSelected(null, function(tab) {
-		window.localStorage.setItem(tab.url, tab.url);
-		document.getElementById("currentLink").innerHTML = "Link blacklisted!";
+		if (window.localStorage.getItem(tab.url) != null)  {
+			document.getElementById("currentLink").innerHTML = "Link already blacklisted!";
+		} else {
+			window.localStorage.setItem(tab.url, "blocked site");
+			document.getElementById("currentLink").innerHTML = "Link blacklisted!";
+		}
 	});
 }
 

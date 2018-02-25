@@ -1,16 +1,9 @@
-var host = "file:///C:/Users/Thomas%20Ma/Documents/ChromeExtensions/HTV2/Redirector/mathscreen.html";
-website = "*://google.ca/*";
-website2 = "*://www.google.ca/*"
-chrome.webRequest.onBeforeRequest.addListener(
-    function(details) {
-         return {redirectUrl: chrome.extension.getURL("mathscreen.html")};
-    },
-    {
-        urls: [
-            website,
-            website2
-        ],
-        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
-    },
-    ["blocking"]
-);
+chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
+	if (changeInfo.status == 'complete' && window.localStorage.getItem(tab.url) != null) {
+		chrome.tabs.update(tab.id, {url: "mathscreen.html"});
+	}
+});
+
+function redirect() {
+	location.replace("google.com");
+}
