@@ -16,6 +16,7 @@
 	"webRequest",
     "*://google.ca/*",
     "*://www.google.ca/*",
-    "webRequestBlocking"
+    "webRequestBlocking",
+	"tabs"
   ]
 }
