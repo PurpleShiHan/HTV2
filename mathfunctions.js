@@ -4,17 +4,13 @@ var answersCorrect = 0;
   function makeProblems() {
   document.getElementById("startButton").style.visibility = "hidden";
   questionTimer();
-  answers = [];
-  for (i=0; i < 12; i++) {
-	var x = Math.floor((Math.random() * 10) + 1);
-	var y = Math.floor((Math.random() * 10) + 1);
-	document.getElementById("demo " + (i+1).toString()).innerHTML = x.toString() + " &times; " + y.toString();
-	answers.push(x*y);
-document.getElementById("answer " + (i+1).toString()).style.visibility = "hidden";
-document.getElementById("text " + (i+1).toString()).value = "";
+  if (localStorage.getItem("difficulty") == "hard") {
+	  makeHardProblems();
+  } else {
+	  makeEasyProblems();
+  }
   }
   
-  }
   function showAnswer(x){
 	var allRight = true;
 	for (i=0; i< 12; i++) {
@@ -51,7 +47,7 @@ function questionTimer() {
   // Get todays date and time
   var now = new Date().getTime();
   // Set the date we're counting down to
-  var countDownDate = now + 60000;
+  var countDownDate = now + 120000;
 
   // Update the count down every 1 second
   var x = setInterval(function() {
@@ -134,4 +130,30 @@ function wait(ms){
 
 function goToBannedSite() {
 	location.replace(window.localStorage.getItem("lastBannedSite"));
+}
+
+function makeEasyProblems() {
+	answers = [];
+	for (i=0; i < 12; i++) {
+		var x = Math.floor((Math.random() * 10) + 1);
+		var y = Math.floor((Math.random() * 10) + 1);
+		document.getElementById("demo " + (i+1).toString()).innerHTML = x.toString() + " &times; " + y.toString();
+		answers.push(x*y);
+		document.getElementById("answer " + (i+1).toString()).style.visibility = "hidden";
+		document.getElementById("text " + (i+1).toString()).value = "";
+  }
+}
+
+function makeHardProblems() {
+	answers = [];
+	for (i=0; i < 12; i++) {
+		var x = Math.floor((Math.random() * 10) + 1);
+		var y = Math.floor((Math.random() * 20) + 1) * 5;
+		var u = y + x;
+		var v = y - x;
+		document.getElementById("demo " + (i+1).toString()).innerHTML = u.toString() + " &times; " + v.toString();
+		answers.push(u*v);
+		document.getElementById("answer " + (i+1).toString()).style.visibility = "hidden";
+		document.getElementById("text " + (i+1).toString()).value = "";
+  }
 }
