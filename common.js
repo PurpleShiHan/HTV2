@@ -1,4 +1,4 @@
-"use strict";
+/* "use strict";
 
 function FormatDuration(d) {
   if (d < 0) {
@@ -17,4 +17,4 @@ function FormatDuration(d) {
   
 }
 
-exports.FormatDuration = FormatDuration;
+exports.FormatDuration = FormatDuration; */

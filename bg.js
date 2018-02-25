@@ -1,19 +1,28 @@
 chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
 	if (changeInfo.status == 'complete' && checkBlacklisted(tab.url)) {
-		chrome.tabs.update(tab.id, {url: "mathscreen.html"});
+		window.localStorage.setItem("lastBannedSite", tab.url);
+		chrome.tabs.update(tab.id, {url: "index.html"});
 	}
 });
 
 function checkBlacklisted(ster) {
-	for (var i=0; i<localStorage.length; i++) {
-		if (localStorage.key(i).includes(ster) && localStorage.getItem(localStorage.key(i)) == "blocked site") {
-			return true;
+/* 	alert(window.localStorage.length);
+	alert(window.localStorage.getItem("banSites"));
+	alert((window.localStorage.getItem("banSites") == true) || (window.localStorage.getItem("banSites") == null).toString() + "hi"); */
+	if ((window.localStorage.getItem("banSites") == true) || (window.localStorage.getItem("banSites") == null)) {
+		for (var i=0; i < window.localStorage.length; i++) {
+/*  			alert(window.localStorage.key(i));
+			alert(ster.includes(window.localStorage.key(i)));
+			alert(window.localStorage.getItem(window.localStorage.key(i)) == "blocked site");  */
+			if (ster.includes(window.localStorage.key(i)) && window.localStorage.getItem(window.localStorage.key(i)) == "blocked site") {
+				return true;
+			}
 		}
 	}
 	return false;
 } 
 
-var History = {};
+/* var History = {};
 
 chrome.browserAction.setBadgeText({ 'text': '?'});
 chrome.browserAction.setBadgeBackgroundColor({ 'color': "#777" });
@@ -71,4 +80,4 @@ setInterval(UpdateBadges, 1000);
 
 chrome.tabs.onUpdated.addListener(HandleUpdate);
 chrome.tabs.onRemoved.addListener(HandleRemove);
-chrome.tabs.onReplaced.addListener(HandleReplace);
+chrome.tabs.onReplaced.addListener(HandleReplace); */

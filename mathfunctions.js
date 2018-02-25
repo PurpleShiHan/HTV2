@@ -33,7 +33,12 @@ document.getElementById("text " + (i+1).toString()).value = "";
 		document.getElementById("ranOutOfTime").style.display = "none";
 		if (allRight) {
 			document.getElementById("questionsStatus").innerHTML = "You succeeded!";
+			var now = new Date().getTime();
 			answersCorrect = 1;
+			window.localStorage.setItem("timer", now + 12000);
+			window.localStorage.setItem("banSites", false);
+			wait(2000);
+			goToBannedSite();
 		} else {
 			document.getElementById("questionsStatus").innerHTML = "One or more questions are wrong.";
 			answersCorrect = -1;
@@ -118,3 +123,15 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById("answerButton").addEventListener('click', showAnswerHandler);
 });
+
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
+}
+
+function goToBannedSite() {
+	location.replace(window.localStorage.getItem("lastBannedSite"));
+}
